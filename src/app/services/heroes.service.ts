@@ -66,6 +66,23 @@ private heroes: Heroe[] = [
    getHeroe(idx: string){
      return this.heroes[idx];
    }
+
+   buscarHeroes( termino:string ):Heroe[]{
+
+    let heroesArr:Heroe[] = [];
+    termino = termino.toLowerCase();
+
+    for(let i=0; i<this.heroes.length; i ++){
+      let heroe = this.heroes[i];
+      let nombre = heroe.nombre.toLowerCase();
+
+      if(nombre.indexOf(termino) >= 0){
+        heroe.idx = i;
+        heroesArr.push(heroe)
+      }
+    }
+    return heroesArr;
+   }
 }
 
 export interface Heroe {
@@ -74,4 +91,5 @@ export interface Heroe {
   img: string;
   aparicion: string;
   casa: string;
+  idx?: number;
 }
